@@ -54,7 +54,7 @@ The arguments taken by alphaopic() are used to specify light stimuli and calcula
 
 <sub> **pfilter** Information about function for prereceptoral filtering. One of the following options: string specifying a species-specific work space in the subdirectory '/data' e.g. 'Mouse', zero for no prereceptoral filtering, or new transmission measurement data matrix with transmissions and wavelengths </sub>
 
-This function generates a list of species name, target opsin, *(EDI)* a-opic equivalent daylight illuminance (lux), *(IRR)* a-opic irradiance (W/m2), *(PHO)* Effective photon [log10(photons/cm2.s)]
+This function generates a list of species name, target opsin, *(EDI)* a-opic equivalent daylight illuminance [lux], *(IRR)* a-opic irradiance [W/m2], *(PHO)* Effective photon [log10(photons/cm2.s)]
 
 ```
 # Example calculations
@@ -75,11 +75,12 @@ exposure2 <- alphaopic(spd, wl, 'Cat', 'Mel', 480, 'Cat');
 exposure3 <- alphaopic(spd, wl, 'Sheep', 'Rod', 500, data.frame(wavelen = 350:750, trans = seq(0,100,length.out=401)));
 ```
 
+## Other functions in the package
 
+* *aopicSpecies*
 
+<sub>Show the list of species with available data of lens transmission and opsin sensitivity<sub>
 
-This repository includes R scripts to calculate animal light exposure and required reference data
-1. **functions.R** includes functions:
 * *govardovskii*
 
 <sub>Calculate Govardovskii nomogram as Govardovskii et al. 2000. (Vis Neurosci. 2000 Jul-Aug;17(4):509-28. doi: 10.1017/s0952523800174036)</sub>
@@ -99,11 +100,6 @@ This repository includes R scripts to calculate animal light exposure and requir
 * *generateaopicactionspec*
 
 <sub>Generate a govardovski nomogram with corrections prereceptoral filtering</sub>
-
-These functions are called by *calculateEDI* function which calculates EDI, total irradiance, and effective photon according to given spectral power distribution, wavelength range, species name, opsin type, sensitivity curve (from data or given lambda max), prereceptoral filtering (from data or given normalised transmission data)
-
-
-
 
 ## Alphaopics References
 
