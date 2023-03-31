@@ -7,7 +7,7 @@
 
 --------------------------------------------------------------------------------
 
-*The package was prepared by Time Vision Behaviour Lab in the University of Manchester. This project has received funding from the Wellcome Trust Investigator Award (210684/Z/18/Z) to [Robert Lucas](https://research.manchester.ac.uk/en/persons/robert.lucas). The package is maintained by [Altug Didikoglu](https://research.manchester.ac.uk/en/persons/altug.didikoglu).*
+*The package was prepared by Time Vision Behaviour Lab in the University of Manchester. This project has received funding from the Wellcome Trust Investigator Award (210684/Z/18/Z) to [Robert Lucas](https://research.manchester.ac.uk/en/persons/robert.lucas). Problems or requests can be emailed to package maintainer [Altug Didikoglu](https://research.manchester.ac.uk/en/persons/altug.didikoglu). This package includes R functions to calculate animal light exposure and required reference data. The packege is also available as an online app: [Animal α-opic light exposure calculator](https://altugdidikoglu.shinyapps.io/alphaopics/).*
 
 --------------------------------------------------------------------------------
 
@@ -31,6 +31,50 @@ Use `install_github` to install using `devtools`.
 ```
 install_github("altugdidikoglu/alphaopics")
 ```
+
+## Light exposure calculation
+
+To calculate species and photopigment-specific ligh exposure, use the `alphaopic()` function. This function calculates species-specific a-opic EDIs (+ photopic illuminance), irradiances and effective photons from predefined species specific parameters.
+
+```
+exposure <- alphaopic(spd, wl, species, opsin, lmax, pfilter);
+```
+
+The arguments taken by alphaopic() are used to specify light stimuli and calculation parameters.
+
+<sub> **spd** Vector containing spectral power distribution in W/m2.nm </sub>
+
+<sub> **wl** Corresponding wavelength range over which measurements are acquired; assumes equally spaced spectra and uses spline extrapolation if not have 1nm spacing </sub>
+
+<sub> **species** String containing the name of a species e.g. 'Mouse' </sub>
+
+<sub> **opsin** Target photopigment name (One of the following options: 'Mel','Rod','Scone','Mcone','Lcone') or 'Photopic' for human lux </sub>
+
+<sub> **lmax** The lambda max of the opsin's photon sensitivity in the absence of preceptoral filtering. One of the following options: a string specifying a species specific work space in the subdirectory '/data' e.g. 'Mouse', or a numerical wavelength value specifying the lambda max to allow modelling </sub>
+
+<sub> **pfilter** Information about function for prereceptoral filtering. One of the following options: string specifying a species-specific work space in the subdirectory '/data' e.g. 'Mouse', zero for no prereceptoral filtering, or new transmission measurement data matrix with transmissions and wavelengths </sub>
+
+This function generates a list of species name, target opsin, *(EDI)* a-opic equivalent daylight illuminance (lux), *(IRR)* a-opic irradiance (W/m2), *(PHO)* Effective photon [log10(photons/cm2.s)]
+
+```
+# Example calculations
+
+# Wavelength range
+wl = 300:780
+
+# Spectral power distribution in W/m2.nm
+spd = dnorm(300:780, mean = 480, sd = 30)
+
+# If target species is available in the package data
+exposure1 <- alphaopic(spd, wl, 'Mouse', 'Scone', 'Mouse', 'Mouse');
+
+# If lambda max value of opsin's photon sensitivity will be used
+exposure2 <- alphaopic(spd, wl, 'Cat', 'Mel', 480, 'Cat');
+
+# If new lens transmission observations will be used
+exposure3 <- alphaopic(spd, wl, 'Sheep', 'Rod', 500, data.frame(wavelen = 350:750, trans = seq(0,100,length.out=401)));
+```
+
 
 
 
@@ -58,10 +102,19 @@ This repository includes R scripts to calculate animal light exposure and requir
 
 These functions are called by *calculateEDI* function which calculates EDI, total irradiance, and effective photon according to given spectral power distribution, wavelength range, species name, opsin type, sensitivity curve (from data or given lambda max), prereceptoral filtering (from data or given normalised transmission data)
 
-2. **data** includes required spectral sensitivity and transmission data and standards
 
-3. **addspecieswizard.R** includes code to add new sensitivity or transmission to data
 
-4. **App.R** includes Shiny package to convert functions to a web page
 
-Online app: [Animal α-opic light exposure calculator](https://altugdidikoglu.shinyapps.io/alphaopics/)
+## Alphaopics References
+
+Duthie, A. B., Cusack, J. J., Jones, I. L., Nilsen, E. B., Pozo, R. A., Rakotonarivo, O. S., Moorter, B. Van, & Bunnefeld, N. (2018). GMSE: an R package for generalised management strategy evaluation. *Methods in Ecology and Evolution*, 9, 2396-2401. https://doi.org/10.1101/221432
+
+Duthie, A. B., A. Bach, & J. Minderman (2021). GMSE: Generalised Management Strategy Evaluation Simulator. R package version 0.7.0.0. https://confoobio.github.io/gmse/
+
+
+
+
+
+
+
+
