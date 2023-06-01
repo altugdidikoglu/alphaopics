@@ -1,14 +1,5 @@
-# ALPHAOPICS VERSION 0.0.1
+# ALPHAOPICS VERSION v1.0.0-alpha
 
-## MAJOR CHANGES
-
-* Slection of animal now can be ...
-
-## NEW FEATURES
-
-* A data can now be added to ...
-
-## BUG FIXES
-
-* Error catches have been added to check ...
-
+## Pre-release version of the animal light exposure calculator toolbox
+* Pre-receptoral filtering data of 55 mammal species
+* Opsin spectral sensitivities of 13 mammal species: Human, Mouse, Four-striped grass mouse, Brown rat, Syrian hamster, Mongolian gerbil, Cattle, Sheep, Horse, Cat, Dog, Rabbit, Crab-eating macaque
