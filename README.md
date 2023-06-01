@@ -7,7 +7,7 @@
 
 --------------------------------------------------------------------------------
 
-*The package was prepared by Time Vision Behaviour Lab in the University of Manchester. This project has received funding from the Wellcome Trust Investigator Award (210684/Z/18/Z) to [Robert Lucas](https://research.manchester.ac.uk/en/persons/robert.lucas). Problems or requests can be emailed to package maintainer [Altug Didikoglu](https://research.manchester.ac.uk/en/persons/altug.didikoglu). This package includes R functions to calculate animal light exposure and required reference data. The packege is also available as an online app: [Animal α-opic light exposure calculator](https://altugdidikoglu.shinyapps.io/alphaopics/).*
+*The package was prepared by Time Vision Behaviour Lab in the University of Manchester. This project has received funding from the Wellcome Trust Investigator Award (210684/Z/18/Z) to [Robert Lucas](https://research.manchester.ac.uk/en/persons/robert.lucas). Problems or requests can be emailed to package maintainer [Altug Didikoglu](https://research.manchester.ac.uk/en/persons/altug.didikoglu). This package includes R functions to calculate animal light exposure and required reference data. The packege is also available as an online app: [Animal α-opic light exposure calculator]([https://altugdidikoglu.shinyapps.io/alphaopics/](https://alphaopics.shinyapps.io/animal_light_toolbox/)).*
 
 --------------------------------------------------------------------------------
 
@@ -91,7 +91,7 @@ exposure3 <- alphaopic(spd, wl, 'Sheep', 'Rod', 500, data.frame(wavelen = 350:75
 
 * *harmonisetrans*
 
-<sub>Extrapolate/adjust species specific prereceptoral filtering data</sub>
+<sub>Extrapolate/adjust curve to match the wavelength range for species-specific prereceptoral filtering data</sub>
 
 * *harmonisesens*
 
@@ -103,14 +103,12 @@ exposure3 <- alphaopic(spd, wl, 'Sheep', 'Rod', 500, data.frame(wavelen = 350:75
 
 ## Alphaopics References
 
-Duthie, A. B., Cusack, J. J., Jones, I. L., Nilsen, E. B., Pozo, R. A., Rakotonarivo, O. S., Moorter, B. Van, & Bunnefeld, N. (2018). GMSE: an R package for generalised management strategy evaluation. *Methods in Ecology and Evolution*, 9, 2396-2401. https://doi.org/10.1101/221432
+Lucas, R. J. et al. Measuring and using light in the melanopsin age. Trends Neurosci 37, 1-9 (2014). https://doi.org:10.1016/j.tins.2013.10.004
 
-Duthie, A. B., A. Bach, & J. Minderman (2021). GMSE: Generalised Management Strategy Evaluation Simulator. R package version 0.7.0.0. https://confoobio.github.io/gmse/
-
-
-
-
-
-
-
-
+CIE S026/E:2018: CIE System for Metrology of Optical Radiation for ipRGC-Influenced Responses to Light.  (2018). https://doi.org:10.25039/S026.2018
+  
+Douglas, R. H. & Jeffery, G. The spectral transmission of ocular media suggests ultraviolet sensitivity is widespread among mammals. Proc Biol Sci 281, 20132995 (2014). https://doi.org:10.1098/rspb.2013.2995
+  
+Govardovskii, V. I., Fyhrquist, N., Reuter, T., Kuzmin, D. G. & Donner, K. In search of the visual pigment template. Vis Neurosci 17, 509-528 (2000). https://doi.org:10.1017/s0952523800174036
+  
+Peirson, S. N., Brown, L. A., Pothecary, C. A., Benson, L. A. & Fisk, A. S. Light and the laboratory mouse. J Neurosci Methods 300, 26-36 (2018). https://doi.org:10.1016/j.jneumeth.2017.04.007
