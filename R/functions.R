@@ -143,12 +143,12 @@ harmonisesens <- function(Sens,wavelen) {
 #' as4 <- generateaopicactionspec('Rod', 'Dog', data.frame(wavelen = 350:750, trans = seq(0,100,length.out=401)));
 #' @export
 generateaopicactionspec <- function(opsin,lmax,pfilter) {
-  wavelen=(300:780); #default wavelength range of 300 to 780nm
+  wavelen=(300:780);  #default wavelength range of 300 to 780nm
   #define spectral sensitivity as appropriate
   if (lmax>0 & length(lmax)==1 & is.numeric(lmax)) { #Lambda max model
     aspecp = govardovskii(lmax, wavelen); #relative photon sensitivity as a function of wavelength prior to correction for prereceptoral filtering
   } else if (is.character(lmax)) { #Use a predefined sensitivity
-    load('data/SensRefData.Rdata');
+    data(SensRefData);
     Sens=SensRefData[[lmax]][[opsin]];
     #harmonise wavelength range for sensitivity measurements and action spectra
     aspecp=harmonisesens(Sens,wavelen);
@@ -159,7 +159,7 @@ generateaopicactionspec <- function(opsin,lmax,pfilter) {
       trans=rep(1,length(wavelen))*100;
     }
   } else if (is.character(pfilter)) { #Use a predefined filter
-    load('data/TransRefData.Rdata');
+    data(TransRefData);
     Pfilter=TransRefData[[pfilter]];
     #harmonise wavelength range for transmission measurements and action spectra
     trans=harmonisetrans(Pfilter,wavelen);
@@ -191,7 +191,7 @@ generateaopicactionspec <- function(opsin,lmax,pfilter) {
   } 
   #calculate a-opic efficacy of luminous radiation for daylight (D65: (W/lm))
   #NOTE - photopic is restricted to wavelengths from 380 to 780, animal specific a-opic spectra may go to lower wavelengths
-  load('data/VisualStandards.Rdata');
+  data(VisualStandards);
   #extract D65 data and harmonise to wavelength range of the action spectra
   wl65=VisualStandards$D65$wavelen;
   sp65=VisualStandards$D65$spectra;
@@ -238,8 +238,8 @@ alphaopic <- function(spd,wl,species,opsin,lmax,pfilter) {
   }
   #Data availability check
   #Check if transmission already available
-  load('data/TransRefData.Rdata');
-  load('data/SensRefData.Rdata');
+  data(TransRefData);
+  data(SensRefData);
   #Check if opsin sensitivity already available
   if (is.character(lmax)) {
     print(paste0('Searching for ',lmax,' opsin photon sensitivity: '));
@@ -310,9 +310,9 @@ alphaopic <- function(spd,wl,species,opsin,lmax,pfilter) {
 #' animals <- aopicSpecies();
 #' @export
 aopicSpecies <- function() {
-  load('data/SensRefData.Rdata');
-  load('data/TransRefData.Rdata');
-  load('data/SpeciesListData.Rdata');
+  data(SensRefData);
+  data(TransRefData);
+  data(SpeciesListData);
   spe = data.frame(matrix(nrow=length(names(SensRefData)), ncol=2));
   colnames(spe) = c('species','photopigment')
   for (i in 1:length(names(SensRefData))) {
