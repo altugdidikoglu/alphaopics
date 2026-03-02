@@ -55,7 +55,7 @@ The arguments taken by `alphaopic()` are used to specify light stimuli and calcu
 
 <sub> **pfilter** Information about function for prereceptoral filtering. One of the following options: string specifying a species-specific work space in the subdirectory '/data' e.g. 'Mouse', zero for no prereceptoral filtering, or new transmission measurement data matrix with transmissions and wavelengths </sub>
 
-This function returns A data frame with the following columns: (1) Luminous; a-opic equivalent daylight quantity expressed in lux (for illuminance) or cd/m² (for luminance), (2) Radiant; a-opic radiant quantity expressed in W/m² (irradiance) or W/m²·sr (radiance), (3) Photon; a-opic photon-based quantity expressed in log₁₀ photons/cm²·s* (photon irradiance) or log₁₀ photons/cm²·s·sr (photon radiance)
+This function returns A data frame with the following columns: (1) Luminous; a-opic equivalent daylight quantity expressed in lux (for illuminance) or cd/m² (for luminance), (2) Radiant; a-opic radiant quantity expressed in W/m² (irradiance) or W/m²·sr (radiance), (3) Photon; a-opic photon-based quantity expressed in log₁₀ photons/cm²·s (photon irradiance) or log₁₀ photons/cm²·s·sr (photon radiance)
 
 ```         
 # Example calculations
