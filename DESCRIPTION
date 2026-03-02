@@ -1,5 +1,26 @@
 Package: alphaopics
 Type: Package
-Title: Species-specific light exposure calculator
-Version: 0.0.1
-RoxygenNote: 7.2.3
+Title: Species-Specific Light Exposure Calculator
+Version: 2.0.0
+Date: 2025-11-24
+Authors@R:
+    person("Altug", "Didikoglu",
+           email = "altug.didikoglu@manchester.ac.uk",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-5582-6956"))
+Description: Provides tools to calculate species-specific a-opic light exposure metrics 
+    for ecological and photobiological research. The package includes datasets for 
+    species-specific photopigment sensitivities and prereceptoral filtering. Functions 
+    calculate Govardovskii visual pigment templates and return results in terms of 
+    a-opic radiance/irradiance, photon radiance/irradiance, and equivalent 
+    daylight illuminance/luminance. Additional tools compute photopic illuminance 
+    and biological light detection indices to support light pollution assessments.
+URL: https://github.com/altugdidikoglu/alphaopics
+License: Apache License (>= 2)
+Encoding: UTF-8
+LazyData: true
+Imports:
+    stats,
+    utils
+Depends: R (>= 4.4)
+RoxygenNote: 7.3.3

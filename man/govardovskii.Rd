@@ -2,21 +2,33 @@
 % Please edit documentation in R/functions.R
 \name{govardovskii}
 \alias{govardovskii}
-\title{Govardovskii nomogram}
+\title{Govardovskii Visual Pigment Template}
 \usage{
-govardovskii(lmax, wavelen)
+govardovskii(lmax, wavelength)
 }
 \arguments{
-\item{lmax}{lambda max of the opsin's photon sensitivity in the absence of preceptoral filtering (nm)}
+\item{lmax}{Numeric. Peak (\eqn{\lambda_{\max}}) of the photopigment in nm, 
+measured without prereceptoral filtering.}
 
-\item{wavelen}{a vector containing the wavelengths over which the nomogram is to be defined}
+\item{wavelength}{Numeric vector. Wavelengths (nm) at which the action 
+spectrum should be calculated.}
 }
 \value{
-raw a-opic action spectra (relative photon sensitivity as a function of wavelength); arbitrary units, no correction for prereceptoral filtering
+A numeric vector containing the relative photon sensitivity at each 
+wavelength in \code{wavelength} (arbitrary units). No prereceptoral filtering 
+is applied.
 }
 \description{
-Calculate Govardovskii nomogram as per Govardovskii et al 2000 (Vis Neurosci. 2000 Jul-Aug;17(4):509-28. doi: 10.1017/s0952523800174036.)
+Computes the Govardovskii et al. (2000) universal visual pigment template,
+returning the unfiltered photon action spectrum for a photopigment with a 
+given peak wavelength (\eqn{\lambda_{\max}}). The function implements the 
+Govardovskii et al. (2000) nomogram exactly as described in: Govardovskii 
+et al. (2000). In search of the visual pigment template. Vis Neurosci. 
+17(4), 509–528. doi: 10.1017/s0952523800174036.
 }
 \examples{
-aspecp1 <- govardovskii(450, 300:800);
+# Compute raw sensitivity of an opsin with λmax = 450 nm
+wavelengths <- 300:800
+aspecp <- govardovskii(450, wavelengths)
+
 }

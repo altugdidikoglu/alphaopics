@@ -2,26 +2,70 @@
 % Please edit documentation in R/functions.R
 \name{generateaopicactionspec}
 \alias{generateaopicactionspec}
-\title{Alpha-opic action spectrum generator}
+\title{Alpha-Opic Action Spectrum Generator}
 \usage{
-generateaopicactionspec(opsin, lmax, pfilter)
+generateaopicactionspec(opsin = "Mel", lmax, pfilter, range = 300:800)
 }
 \arguments{
-\item{opsin}{target opsin name (One of the following options: 'Mel','Rod','Scone','Mcone','Lcone') or 'Photopic' human lux}
+\item{opsin}{Character. Specifies the target opsin name. Must be one of: 
+"Mel", "Rod", "Scone", "Mcone", "Lcone". Default is "Mel".}
 
-\item{lmax}{the lambda max of the opsin's photon sensitivity in the absence of preceptoral filtering. A string specifying a species specific work space in the subdirectory '/data' e.g. 'Mouse', or a numerical wavelength value specifying the lambda max to allow modelling}
+\item{lmax}{Numeric or character. Lambda max of the opsin's photon sensitivity 
+without prereceptoral filtering. Can be:
+\itemize{
+    \item A numeric wavelength (nm) for modelling a custom opsin, or
+    \item A character string specifying a species-specific workspace in the 
+    \code{/data} directory (e.g., "Mouse") to load a pre-measured lambda max.
+}}
 
-\item{pfilter}{information about function for prereceptoral filtering. A string specifying a species specific work space in the subdirectory '/data' e.g. 'Mouse', zero for no prereceptoral filtering, or new transmission measurement data matrix with transmissions and wavelengths}
+\item{pfilter}{Numeric, character, or data frame. Information for prereceptoral 
+filtering correction. Can be:
+\itemize{
+   \item A numeric zero for no filtering, or
+   \item A character string specifying a species-specific workspace in \code{/data}, or  
+   \item A data frame with columns:
+   \itemize{
+       \item \code{wavelen}: measured wavelengths (nm). The wavelengths must be 
+       defined in 1 nm steps.
+       \item \code{trans}: transmission values (\%).
+   }
+}}
+
+\item{range}{Numeric vector. Wavelength range (nm) over which to generate the 
+action spectrum (default: 300:800). Must be in 1 nm steps.}
 }
 \value{
-list of opsin, harmonized wavelength range, prereceptoral transmission, action spectrum, photon action spectrum, a-opic efficacy of luminous radiation for daylight. aspec = normalized a-opic action spectra for relative energy sensitivity as a function of wavelength. aspecp = normalized a-opic action spectra for relative photon sensitivity as a function of wavelength. kavD65 = a-opic efficacy of luminous radiation for daylight (D65; (W/lm)) for conversion to a-opic EDI. wavelen = the wavelength range over which aspec is defined (be default 300 to 780nm). trans = the prereceptoral filtering correction used to adjust the curves.
+A list containing:
+\itemize{
+   \item \code{opsin} — opsin name  
+   \item \code{wavelen} — harmonized wavelength range  
+   \item \code{trans} — prereceptoral lens transmission used  
+   \item \code{aspec} — normalized energy-based action spectrum corrected for lens transmission
+   \item \code{aspecp} — normalized photon-based action spectrum corrected for lens transmission
+   \item \code{kavD65} — a-opic efficacy of luminous radiation for daylight (D65; W/lm)
+}
 }
 \description{
-Generate a govardovski nomogram with corrections prereceptoral filtering
+Generates a Govardovskii nomogram for a specified opsin with optional 
+corrections for prereceptoral filtering.
 }
 \examples{
-as1 <- generateaopicactionspec('Photopic', 'Human', 'Human');
-as2 <- generateaopicactionspec('Mel', 'Mouse', 'Mouse');
-as3 <- generateaopicactionspec('Mel', 480, 'Mouse');
-as4 <- generateaopicactionspec('Rod', 'Dog', data.frame(wavelen = 350:750, trans = seq(0,100,length.out=401)));
+# Generate a-opic action spectra for different opsins and species
+actionspec1 <- generateaopicactionspec(
+  opsin = 'Mel',
+  lmax = 'Human',
+  pfilter = 'Human',
+  range = 380:780
+)
+actionspec2 <- generateaopicactionspec(opsin = 'Mel', lmax = 'Mouse', pfilter = 'Mouse')
+actionspec3 <- generateaopicactionspec(opsin = 'Mel', lmax = 480, pfilter = 'Mouse')
+actionspec4 <- generateaopicactionspec(
+  opsin = 'Rod',
+  lmax = 'Dog',
+  pfilter = data.frame(
+    wavelen = 350:750,
+    trans = seq(0, 100, length.out = 401)
+  )
+)
+
 }

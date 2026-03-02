@@ -2,41 +2,96 @@
 % Please edit documentation in R/functions.R
 \name{alphaopic}
 \alias{alphaopic}
-\title{Species specific a-opic calculator}
+\title{Species-Specific a-Opic Calculator}
 \usage{
-alphaopic(spd, wl, species, opsin, lmax, pfilter)
+alphaopic(power, wavelength, opsin = "Mel", lmax, pfilter)
 }
 \arguments{
-\item{spd}{vector containing spectral power distribution in W/m2.nm}
+\item{power}{Numeric vector. Spectral irradiance in W/m²·nm or radiance in 
+W/m²·sr.nm}
 
-\item{wl}{corresponding wavelength range over which measurements are acquired; assumes equally spaced spectra and uses spline extrapolation if not have 1nm spacing}
+\item{wavelength}{Numeric vector. Wavelengths in nanometers (nm) 
+corresponding to the power values. Assumes equally spaced spectra; 
+spline interpolation is applied if spacing is not 1 nm.}
 
-\item{species}{string containing the name of a species e.g. 'Mouse'}
+\item{opsin}{Character. Specifies the target opsin name. Must be one of: 
+"Mel", "Rod", "Scone", "Mcone", "Lcone".
+Default is "Mel".}
 
-\item{opsin}{target opsin name (One of the following options: 'Mel','Rod','Scone','Mcone','Lcone') or 'Photopic' human lux}
+\item{lmax}{Numeric or character. Lambda max of the opsin's photon sensitivity 
+without prereceptoral filtering. Can be:
+\itemize{
+    \item A numeric wavelength (nm) for modelling a custom opsin, or
+    \item A character string specifying a species-specific workspace in the 
+    \code{/data} directory (e.g., "Mouse") to load a pre-measured lambda max.
+}}
 
-\item{lmax}{the lambda max of the opsin's photon sensitivity in the absence of preceptoral filtering. A string specifying a species specific work space in the subdirectory '/data' e.g. 'Mouse', or a numerical wavelength value specifying the lambda max to allow modelling}
-
-\item{pfilter}{information about function for prereceptoral filtering. A string specifying a species specific work space in the subdirectory '/data' e.g. 'Mouse', zero for no prereceptoral filtering, or new transmission measurement data matrix with transmissions and wavelengths}
+\item{pfilter}{Numeric, character, or data frame. Information for prereceptoral 
+filtering correction. Can be:
+\itemize{
+   \item A numeric zero for no filtering, or
+   \item A character string specifying a species-specific workspace in \code{/data}, or  
+   \item A data frame with columns:
+   \itemize{
+       \item \code{wavelen}: measured wavelengths (nm). The wavelengths must be 
+       defined in 1 nm steps.
+       \item \code{trans}: transmission values (\%).
+   }
+}}
 }
 \value{
-list of species name, target opsin, EDI = a-opic equivalent daylight illuminance (in lux), IRR = a-opic irradiance (W/m2), PHO = Effective photon [log10(photons/cm2.s)]
+A data frame with the following columns:
+\itemize{
+   \item \code{Luminous}
+   a-opic equivalent daylight quantity expressed in:
+   \itemize{
+       \item lux (for illuminance), or
+       \item cd/m² (for luminance)
+   }
+   \item \code{Radiant}
+   a-opic radiant quantity expressed in:
+   \itemize{
+       \item W/m² (irradiance), or
+       \item W/m²·sr (radiance)
+   }
+   \item \code{Photon}
+   a-opic photon-based quantity expressed in:
+   \itemize{
+       \item log₁₀ photons/cm²·s* (photon irradiance), or
+       \item log₁₀ photons/cm²·s·sr (photon radiance)
+   }
+}
 }
 \description{
-Calculate species specific a-opic EDIs (+ photopic illuminance), irradiances and effective photons from predefined species specific parameters
+Calculates luminous, radiant, or photon quantities using species-specific 
+a-opic functions.
+}
+\note{
+\itemize{
+   \item Use the species common name (e.g., "Mouse") to specify data for that 
+   species when using predefined sensitivities or prereceptoral filters.  
+   \item Use the \code{aopicspecies()} function to see the list of species available in 
+   the package data.  
+   \item Ensure that \code{power} and \code{wavelength} vectors have the same length and that 
+   wavelength values are equally spaced. Spline interpolation will be applied 
+   if spacing is not 1 nm.  
+   \item The measurement wavelength range (\code{wavelength}) should cover the target 
+   opsin sensitivity range for accurate calculation.
+}
 }
 \examples{
-#Wavelength range
-wl = 300:780
-#Spectral power distribution in W/m2.nm
-spd = dnorm(300:780, mean = 480, sd = 30)
+# Define wavelength range
+wl <- 300:780
+# Example spectral irradiance distribution in W/m²·nm
+irradiance <- dnorm(wl, mean = 480, sd = 30)
+# Using predefined species data
+exposure1 <- alphaopic(irradiance, wl, opsin = 'Scone', lmax = 'Human', pfilter = 'Human')
+# Using numeric lambda max for opsin modeling
+exposure2 <- alphaopic(irradiance, wl, opsin = 'Mel', lmax = 480, pfilter = 'Cat')
+# Using new lens transmission observations
+lens_data <- data.frame(wavelen = 350:750, trans = seq(0, 100, length.out = 401))
+exposure3 <- alphaopic(irradiance, wl, opsin = 'Rod', lmax = 500, pfilter = lens_data)
+# Apply no lens filtering
+exposure4 <- alphaopic(irradiance, wl, opsin = 'Mcone', lmax = 'Horse', pfilter = 0)
 
-#If target species is available in the package data
-exposure1 <- alphaopic(spd, wl, 'Mouse', 'Scone', 'Mouse', 'Mouse');
-
-#If lambda max value of opsin's photon sensitivity will be used
-exposure2 <- alphaopic(spd, wl, 'Cat', 'Mel', 480, 'Cat');
-
-#If new lens transmission observations will be used
-exposure3 <- alphaopic(spd, wl, 'Sheep', 'Rod', 500, data.frame(wavelen = 350:750, trans = seq(0,100,length.out=401)));
 }

@@ -1,0 +1,20 @@
+citHeader("To cite alphaopics in publications, use:")
+
+citEntry(
+  entry = "article",
+  title = "Beyond Lux: methods for species and photoreceptor-specific quantification of ambient light for mammals",
+  author = c(
+    person("R.J.", "McDowell"),
+    person("A.", "Didikoglu"),
+    person("et al.")
+  ),
+  journal = "BMC Biology",
+  year = 2024,
+  volume = 22,
+  pages = "257",
+  doi = "10.1186/s12915-024-02038-1",
+  textVersion =
+  paste("McDowell, R.J., Didikoglu, A., Woelders, T. et al. (2024).",
+        "Beyond Lux: methods for species and photoreceptor-specific quantification of ambient light for mammals.",
+        "BMC Biology 22, 257. https://doi.org/10.1186/s12915-024-02038-1")
+)

@@ -2,19 +2,23 @@
 % Please edit documentation in R/functions.R
 \name{photonenergy}
 \alias{photonenergy}
-\title{Photon energy}
+\title{Photon Energy}
 \usage{
-photonenergy(wavelen)
+photonenergy(wavelength)
 }
 \arguments{
-\item{wavelen}{a vector containing the wavelengths}
+\item{wavelength}{Numeric vector. Wavelengths in nanometers (nm).}
 }
 \value{
-photon energy (W.s/photon.nm)
+Numeric vector. Photon energy in Joules per photon.
 }
 \description{
-Calculates the energy of a photon at a given wavelengths (nm)
+Calculates the energy of a photon for given wavelengths in nanometers (nm),
+based on Planck's equation: \eqn{E = hc / \lambda}.
 }
 \examples{
-e <- photonenergy(300:800);
+# Calculate photon energy for visible spectrum
+wavelength <- 300:800
+e <- photonenergy(wavelength)
+
 }
