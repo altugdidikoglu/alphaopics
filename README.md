@@ -132,15 +132,15 @@ The arguments taken by `blambda()` are used to specify light stimuli and calcula
 
 ## Alphaopics References
 
-Lucas, R. J. et al. Measuring and using light in the melanopsin age. Trends Neurosci 37, 1-9 (2014). [https://doi.org:10.1016/j.tins.2013.10.004](https://doi.org:10.1016/j.tins.2013.10.004){.uri}
+Lucas, R. J. et al. Measuring and using light in the melanopsin age. Trends Neurosci 37, 1-9 (2014). [https://doi.org:10.1016/j.tins.2013.10.004](https://doi.org:10.1016/j.tins.2013.10.004)
 
-CIE S026/E:2018: CIE System for Metrology of Optical Radiation for ipRGC-Influenced Responses to Light. (2018). [https://doi.org:10.25039/S026.2018](https://doi.org:10.25039/S026.2018){.uri}
+CIE S026/E:2018: CIE System for Metrology of Optical Radiation for ipRGC-Influenced Responses to Light. (2018). [https://doi.org:10.25039/S026.2018](https://doi.org:10.25039/S026.2018)
 
-Lucas, R. J. et al. Recommendations for measuring and standardizing light for laboratory mammals to improve welfare and reproducibility in animal research. PLoS Biol 22, e3002535 (2024). [https://doi.org/10.1371/journal.pbio.3002535](https://doi.org/10.1371/journal.pbio.3002535){.uri}
+Lucas, R. J. et al. Recommendations for measuring and standardizing light for laboratory mammals to improve welfare and reproducibility in animal research. PLoS Biol 22, e3002535 (2024). [https://doi.org/10.1371/journal.pbio.3002535](https://doi.org/10.1371/journal.pbio.3002535)
 
-Douglas, R. H. & Jeffery, G. The spectral transmission of ocular media suggests ultraviolet sensitivity is widespread among mammals. Proc Biol Sci 281, 20132995 (2014). [https://doi.org:10.1098/rspb.2013.2995](https://doi.org:10.1098/rspb.2013.2995){.uri}
+Douglas, R. H. & Jeffery, G. The spectral transmission of ocular media suggests ultraviolet sensitivity is widespread among mammals. Proc Biol Sci 281, 20132995 (2014). [https://doi.org:10.1098/rspb.2013.2995](https://doi.org:10.1098/rspb.2013.2995)
 
-Govardovskii, V. I., Fyhrquist, N., Reuter, T., Kuzmin, D. G. & Donner, K. In search of the visual pigment template. Vis Neurosci 17, 509-528 (2000). [https://doi.org:10.1017/s0952523800174036](https://doi.org:10.1017/s0952523800174036){.uri}
+Govardovskii, V. I., Fyhrquist, N., Reuter, T., Kuzmin, D. G. & Donner, K. In search of the visual pigment template. Vis Neurosci 17, 509-528 (2000). [https://doi.org:10.1017/s0952523800174036](https://doi.org:10.1017/s0952523800174036)
 
-Didikoglu, A. Optimal spectral weighting functions for biological and ecological effects of environmental light pollution. CIE (2026). [https://cie.co.at/reporter/dr-6-50](https://cie.co.at/reporter/dr-6-50){.uri}
+Didikoglu, A. Optimal spectral weighting functions for biological and ecological effects of environmental light pollution. CIE (2026). [https://cie.co.at/reporter/dr-6-50](https://cie.co.at/reporter/dr-6-50)
 
